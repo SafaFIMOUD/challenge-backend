@@ -1,0 +1,21 @@
+extends layout.pug
+
+block content
+  <h1>Page Restos</h1>
+
+  form(action="/restos" method="GET")
+
+    label.label Restaurant Name
+      input.input(type="text" name="name" placeholder="Pizza hut...")
+
+    input.button(type="submit" value="Search")
+
+    ul
+      each restaurant in restaurants
+        li
+          div
+            p name : #{restaurant.name} 
+            p type : #{restaurant.cuisine} 
+            p addresse : #{restaurant.address.street} #{restaurant.address.zipcode} #{restaurant.borough}
+      else 
+        li No restaurant found..

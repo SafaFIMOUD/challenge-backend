@@ -1,0 +1,26 @@
+extends layout.pug
+
+block content
+  <h1>Page Explore</h1>
+
+  form(action="/explore" method="GET")
+
+    label.label Quartier
+    select(name="borough") 
+      each quartier in quartiers
+          option(value=quartier, selected=quartier === selectedQuartier ? true : false) #{quartier}
+    label.label Cuisine
+    select(name="cuisine") 
+      each cuisine in cuisines
+          option(value=cuisine, selected=cuisine === selectedCuisine ? true : false) #{cuisine}
+    input.button(type="submit" value="Search")
+
+    ul
+      each restaurant in restaurants
+        li
+          div
+            p name : #{restaurant.name} 
+            p type : #{restaurant.cuisine} 
+            p addresse : #{restaurant.address.street} #{restaurant.address.zipcode} #{restaurant.borough}
+      else 
+        li No restaurant found..
